@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Status</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+        
+        :root {
+            --bg-dark: #121212;
+            --bg-card: #1e1e1e;
+            --bg-card-hover: #242424;
+            --text-primary: #f5f5f5;
+            --text-secondary: #9e9e9e;
+            --border-color: #333333;
+            --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            
+            --status-online: #4CAF50;
+            --status-checking: #FFC107;
+            --status-offline: #F44336;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        
+        .dashboard {
+            width: 100%;
+            max-width: 1200px;
+        }
+        
+        .header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        
+        .status-card {
+            background-color: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+        
+        .status-card:hover {
+            transform: translateY(-8px);
+            background-color: var(--bg-card-hover);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card-header {
+            padding: 1.5rem 1.5rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .card-header h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .status-display {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+        
+        .status-icon {
+            width: 28px;
+            height: 28px;
+        }
+        
+        .status-text {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        
+        .status-meta {
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+        }
+        
+        .status-meta-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .status-meta-value {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        /* Status-specific styles */
+        .checking .status-indicator {
+            background-color: var(--status-checking);
+        }
+        
+        .checking .status-text {
+            color: var(--status-checking);
+        }
+        
+        .online .status-indicator {
+            background-color: var(--status-online);
+        }
+        
+        .online .status-text {
+            color: var(--status-online);
+        }
+        
+        .offline .status-indicator {
+            background-color: var(--status-offline);
+        }
+        
+        .offline .status-text {
+            color: var(--status-offline);
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard {
+                padding: 1rem 0;
+            }
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .status-grid {
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <h1>Service Status</h1>
+            <p>Real-time monitoring vipps api</p>
+        </div>
+        
+        <div class="status-grid">
+            <div class="status-card">
+                <div class="card-header">
+                    <h2>
+                        <span class="status-indicator checking"></span>
+                        Monthly Service
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <iframe id="monthly-frame" src="https://3000-idx-test-server-1741268804010.cluster-y34ecccqenfhcuavp7vbnxv7zk.cloudworkstations.dev/monthly/100" style="display:none;"></iframe>
+                    <div id="monthly-container" class="checking">
+                        <div class="status-display">
+                            <svg class="status-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="12"></line>
+                                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                            </svg>
+                            <div class="status-text">Checking Status</div>
+                        </div>
+                        <div class="status-meta">
+                            <div class="status-meta-label">Last Check</div>
+                            <div class="status-meta-value" id="monthly-lastcheck">Just now</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="status-card">
+                <div class="card-header">
+                    <h2>
+                        <span class="status-indicator checking"></span>
+                        Onetime Service
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <iframe id="onetime-frame" src="https://3000-idx-test-server-1741268804010.cluster-y34ecccqenfhcuavp7vbnxv7zk.cloudworkstations.dev/onetime/100" style="display:none;"></iframe>
+                    <div id="onetime-container" class="checking">
+                        <div class="status-display">
+                            <svg class="status-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="12"></line>
+                                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                            </svg>
+                            <div class="status-text">Checking Status</div>
+                        </div>
+                        <div class="status-meta">
+                            <div class="status-meta-label">Last Check</div>
+                            <div class="status-meta-value" id="onetime-lastcheck">Just now</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="status-card">
+                <div class="card-header">
+                    <h2>
+                        <span class="status-indicator checking"></span>
+                        Main Server
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <iframe id="server-frame" src="https://3000-idx-test-server-1741268804010.cluster-y34ecccqenfhcuavp7vbnxv7zk.cloudworkstations.dev/" style="display:none;"></iframe>
+                    <div id="server-container" class="checking">
+                        <div class="status-display">
+                            <svg class="status-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="12"></line>
+                                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                            </svg>
+                            <div class="status-text">Checking Status</div>
+                        </div>
+                        <div class="status-meta">
+                            <div class="status-meta-label">Last Check</div>
+                            <div class="status-meta-value" id="server-lastcheck">Just now</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 System Status</p>
+        </div>
+    </div>
+    
+    <script>
+        function checkIframe(iframeId, containerId, lastCheckId) {
+            const iframe = document.getElementById(iframeId);
+            const container = document.getElementById(containerId);
+            const lastCheckElement = document.getElementById(lastCheckId);
+            const statusIndicator = container.closest('.status-card').querySelector('.status-indicator');
+            const now = new Date();
+            
+            iframe.onload = () => {
+                container.classList.remove('checking');
+                container.classList.add('online');
+                statusIndicator.classList.remove('checking');
+                statusIndicator.classList.add('online');
+                
+                container.querySelector('.status-display').innerHTML = `
+                    <svg class="status-icon" viewBox="0 0 24 24" fill="none" stroke="${getComputedStyle(document.documentElement).getPropertyValue('--status-online')}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    <div class="status-text">Online</div>
+                `;
+                
+                lastCheckElement.textContent = now.toLocaleTimeString();
+            };
+            
+            iframe.onerror = () => {
+                container.classList.remove('checking');
+                container.classList.add('offline');
+                statusIndicator.classList.remove('checking');
+                statusIndicator.classList.add('offline');
+                
+                container.querySelector('.status-display').innerHTML = `
+                    <svg class="status-icon" viewBox="0 0 24 24" fill="none" stroke="${getComputedStyle(document.documentElement).getPropertyValue('--status-offline')}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="15" y1="9" x2="9" y2="15"></line>
+                        <line x1="9" y1="9" x2="15" y2="15"></line>
+                    </svg>
+                    <div class="status-text">Offline</div>
+                `;
+                
+                lastCheckElement.textContent = now.toLocaleTimeString();
+            };
+            
+            // Set a timeout in case the iframe doesn't trigger onload or onerror
+            setTimeout(() => {
+                if (container.classList.contains('checking')) {
+                    container.classList.remove('checking');
+                    container.classList.add('offline');
+                    statusIndicator.classList.remove('checking');
+                    statusIndicator.classList.add('offline');
+                    
+                    container.querySelector('.status-display').innerHTML = `
+                        <svg class="status-icon" viewBox="0 0 24 24" fill="none" stroke="${getComputedStyle(document.documentElement).getPropertyValue('--status-offline')}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="15" y1="9" x2="9" y2="15"></line>
+                            <line x1="9" y1="9" x2="15" y2="15"></line>
+                        </svg>
+                        <div class="status-text">Timeout</div>
+                    `;
+                    
+                    lastCheckElement.textContent = now.toLocaleTimeString();
+                }
+            }, 10000);
+        }
+        
+        checkIframe("monthly-frame", "monthly-container", "monthly-lastcheck");
+        checkIframe("onetime-frame", "onetime-container", "onetime-lastcheck");
+        checkIframe("server-frame", "server-container", "server-lastcheck");
+    </script>
+</body>
+</html>
