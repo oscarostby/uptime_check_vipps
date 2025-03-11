@@ -6,7 +6,7 @@
   <title>Tjenestestatus og Analysepanel</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
-    
+
     :root {
       --bg-dark: #121212;
       --bg-card: #1e1e1e;
@@ -15,51 +15,51 @@
       --text-secondary: #9e9e9e;
       --border-color: #333333;
       --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-      
+
       --status-online: #4CAF50;
       --status-checking: #FFC107;
       --status-offline: #F44336;
-      
+
       /* Analytics section styling */
       --analytics-bg: #1e1e1e;
       --analytics-accent: #4CAF50;
     }
-    
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    
+
     body {
       font-family: 'DM Sans', sans-serif;
       background-color: var(--bg-dark);
       color: var(--text-primary);
       padding: 2rem;
     }
-    
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
     }
-    
+
     .header {
       text-align: center;
       margin-bottom: 2rem;
     }
-    
+
     .header h1 {
       font-size: 2.8rem;
       font-weight: 700;
       letter-spacing: -0.03em;
       margin-bottom: 0.5rem;
     }
-    
+
     .header p {
       color: var(--text-secondary);
       font-size: 1.1rem;
     }
-    
+
     /* Service Status Cards */
     .status-grid {
       display: grid;
@@ -67,7 +67,7 @@
       gap: 2rem;
       margin-bottom: 3rem;
     }
-    
+
     .status-card {
       background-color: var(--bg-card);
       border-radius: 16px;
@@ -76,19 +76,19 @@
       transition: all 0.3s ease;
       border: 1px solid var(--border-color);
     }
-    
+
     .status-card:hover {
       transform: translateY(-8px);
       background-color: var(--bg-card-hover);
     }
-    
+
     .card-header {
       padding: 1.5rem 1.5rem 1rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-    
+
     .card-header h2 {
       font-size: 1.4rem;
       font-weight: 600;
@@ -96,20 +96,20 @@
       align-items: center;
       gap: 0.75rem;
     }
-    
+
     .status-indicator {
       display: inline-block;
       width: 12px;
       height: 12px;
       border-radius: 50%;
     }
-    
+
     .card-body {
       padding: 1.5rem;
       display: flex;
       flex-direction: column;
     }
-    
+
     .status-display {
       display: flex;
       align-items: center;
@@ -119,17 +119,17 @@
       background-color: rgba(255, 255, 255, 0.05);
       border-radius: 12px;
     }
-    
+
     .status-icon {
       width: 28px;
       height: 28px;
     }
-    
+
     .status-text {
       font-size: 1.2rem;
       font-weight: 500;
     }
-    
+
     .status-meta {
       margin-top: 0.5rem;
       display: flex;
@@ -139,16 +139,16 @@
       background-color: rgba(255, 255, 255, 0.03);
       border-radius: 12px;
     }
-    
+
     .status-meta-label {
       color: var(--text-secondary);
       font-size: 0.9rem;
     }
-    
+
     .status-meta-value {
       font-weight: 500;
     }
-    
+
     /* Uptime Status Classes */
     .checking .status-indicator {
       background-color: var(--status-checking);
@@ -156,22 +156,22 @@
     .checking .status-text {
       color: var(--status-checking);
     }
-    
+
     .online .status-indicator {
       background-color: var(--status-online);
     }
     .online .status-text {
       color: var(--status-online);
     }
-    
+
     .offline .status-indicator {
       background-color: var(--status-offline);
     }
     .offline .status-text {
       color: var(--status-offline);
     }
-    
-    /* Updated Analytics Section */
+
+    /* Analytics Section */
     .analytics-section {
       background-color: var(--analytics-bg);
       border-radius: 16px;
@@ -180,7 +180,7 @@
       box-shadow: var(--card-shadow);
       border: 1px solid var(--border-color);
     }
-    
+
     .analytics-section h2 {
       font-size: 1.5rem;
       margin-bottom: 1.5rem;
@@ -188,7 +188,7 @@
       position: relative;
       padding-bottom: 0.5rem;
     }
-    
+
     .analytics-section h2::after {
       content: '';
       position: absolute;
@@ -199,7 +199,7 @@
       background: var(--analytics-accent);
       border-radius: 2px;
     }
-    
+
     /* Analytics Cards */
     .analytics-cards {
       display: grid;
@@ -207,7 +207,7 @@
       gap: 1rem;
       margin-bottom: 1.5rem;
     }
-    
+
     .analytics-card {
       background-color: rgba(255, 255, 255, 0.05);
       border-radius: 12px;
@@ -216,7 +216,7 @@
       align-items: center;
       gap: 1rem;
     }
-    
+
     .analytics-icon {
       display: flex;
       align-items: center;
@@ -227,39 +227,39 @@
       border-radius: 8px;
       color: var(--analytics-accent);
     }
-    
+
     .analytics-icon svg {
       width: 22px;
       height: 22px;
     }
-    
+
     .analytics-info {
       flex: 1;
     }
-    
+
     .analytics-label {
       color: var(--text-secondary);
       font-size: 0.9rem;
       margin-bottom: 0.25rem;
     }
-    
+
     .analytics-value {
       font-size: 1.3rem;
       font-weight: 600;
     }
-    
+
     /* Tabbed Chart Interface */
     .chart-tabs {
       background-color: rgba(255, 255, 255, 0.03);
       border-radius: 12px;
       overflow: hidden;
     }
-    
+
     .tab-buttons {
       display: flex;
       border-bottom: 1px solid var(--border-color);
     }
-    
+
     .tab-button {
       background: none;
       border: none;
@@ -272,11 +272,11 @@
       position: relative;
       transition: all 0.2s;
     }
-    
+
     .tab-button.active {
       color: var(--text-primary);
     }
-    
+
     .tab-button.active::after {
       content: '';
       position: absolute;
@@ -286,35 +286,177 @@
       height: 3px;
       background-color: var(--analytics-accent);
     }
-    
+
     .tab-content {
       padding: 1.5rem;
     }
-    
+
     .tab-pane {
       display: none;
       animation: fadeIn 0.3s ease-in-out;
     }
-    
+
     .tab-pane.active {
       display: block;
     }
-    
+
     .tab-pane canvas {
       width: 100%;
       max-height: 250px;
     }
-    
+
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
-    
+
+    /* Detailed Analytics Section */
+    .detailed-analytics-section {
+      background-color: var(--analytics-bg);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: var(--card-shadow);
+      border: 1px solid var(--border-color);
+      margin-bottom: 2rem;
+    }
+
+    .detailed-analytics-section h2,
+    .detailed-analytics-section h3 {
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .analytics-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .analytics-detail-item {
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 0.75rem;
+      border-radius: 8px;
+    }
+
+    .analytics-table {
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    table th, table td {
+      border: 1px solid var(--border-color);
+      padding: 0.5rem;
+      text-align: left;
+    }
+
+    table th {
+      background-color: var(--bg-card-hover);
+      cursor: pointer;
+    }
+
+    table th.sort-asc::after,
+    table th.sort-desc::after {
+      content: '';
+      display: inline-block;
+      margin-left: 0.5rem;
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+    }
+
+    table th.sort-asc::after {
+      border-bottom: 4px solid var(--text-primary);
+    }
+
+    table th.sort-desc::after {
+      border-top: 4px solid var(--text-primary);
+    }
+
     .footer {
       text-align: center;
       color: var(--text-secondary);
       font-size: 0.9rem;
       padding-top: 1rem;
+    }
+
+    /* Help Button */
+    .help-button {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background-color: var(--analytics-accent);
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--card-shadow);
+    }
+
+    .help-button svg {
+      width: 24px;
+      height: 24px;
+      color: var(--text-primary);
+    }
+
+    .help-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .help-modal.active {
+      display: flex;
+    }
+
+    .help-content {
+      background-color: var(--bg-card);
+      border-radius: 16px;
+      padding: 2rem;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: var(--card-shadow);
+    }
+
+    .help-content h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .help-content p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .help-content .close-button {
+      background-color: var(--analytics-accent);
+      border: none;
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      color: var(--text-primary);
+      cursor: pointer;
+      margin-top: 1rem;
     }
   </style>
   <!-- Include Chart.js from CDN -->
@@ -326,7 +468,7 @@
       <h1>Tjenestestatus og Analysepanel</h1>
       <p>Sanntids overvåking av Vipps API og omfattende analyse</p>
     </div>
-    
+
     <!-- Service Status Cards -->
     <div class="status-grid">
       <!-- Monthly Service Card -->
@@ -356,7 +498,7 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Onetime Service Card -->
       <div class="status-card">
         <div class="card-header">
@@ -384,7 +526,7 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Main Server Card -->
       <div class="status-card">
         <div class="card-header">
@@ -413,11 +555,11 @@
         </div>
       </div>
     </div>
-    
-    <!-- Improved Analytics Section -->
+
+    <!-- Analytics Section with Charts -->
     <section class="analytics-section">
       <h2>Analysedetaljer</h2>
-      
+
       <!-- Analytics Cards Grid -->
       <div class="analytics-cards">
         <div class="analytics-card">
@@ -431,7 +573,7 @@
             <div class="analytics-value" id="total-requests">Laster...</div>
           </div>
         </div>
-        
+
         <div class="analytics-card">
           <div class="analytics-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -444,7 +586,7 @@
             <div class="analytics-value" id="one-time-requests">Laster...</div>
           </div>
         </div>
-        
+
         <div class="analytics-card">
           <div class="analytics-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -460,7 +602,7 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Tabbed Charts -->
       <div class="chart-tabs">
         <div class="tab-buttons">
@@ -481,12 +623,147 @@
         </div>
       </div>
     </section>
-    
+
+    <!-- Detailed Analytics Section -->
+    <section class="detailed-analytics-section">
+      <h2>Detaljert Analytics</h2>
+      <div class="analytics-details">
+        <div class="analytics-detail-item">
+          <div class="analytics-info">
+            <div class="analytics-label">Total Requests:</div>
+            <div class="analytics-value" id="detail-total-requests">Laster...</div>
+          </div>
+        </div>
+        <div class="analytics-detail-item">
+          <div class="analytics-info">
+            <div class="analytics-label">Engangs Forespørsler:</div>
+            <div class="analytics-value" id="detail-total-onetime">Laster...</div>
+          </div>
+        </div>
+        <div class="analytics-detail-item">
+          <div class="analytics-info">
+            <div class="analytics-label">Månedlige Forespørsler:</div>
+            <div class="analytics-value" id="detail-total-monthly">Laster...</div>
+          </div>
+        </div>
+        <div class="analytics-detail-item">
+          <div class="analytics-info">
+            <div class="analytics-label">Total Beløp (kr):</div>
+            <div class="analytics-value" id="detail-total-amount">Laster...</div>
+          </div>
+        </div>
+        <div class="analytics-detail-item">
+          <div class="analytics-info">
+            <div class="analytics-label">Engangs Beløp (kr):</div>
+            <div class="analytics-value" id="detail-onetime-amount">Laster...</div>
+          </div>
+        </div>
+        <div class="analytics-detail-item">
+          <div class="analytics-info">
+            <div class="analytics-label">Månedlig Beløp (kr):</div>
+            <div class="analytics-value" id="detail-monthly-amount">Laster...</div>
+          </div>
+        </div>
+        <div class="analytics-detail-item">
+          <div class="analytics-info">
+            <div class="analytics-label">Gj.snitt Beløp (kr):</div>
+            <div class="analytics-value" id="detail-avg-amount">Laster...</div>
+          </div>
+        </div>
+        <div class="analytics-detail-item">
+          <div class="analytics-info">
+            <div class="analytics-label">Gj.snitt Engangs (kr):</div>
+            <div class="analytics-value" id="detail-avg-onetime">Laster...</div>
+          </div>
+        </div>
+        <div class="analytics-detail-item">
+          <div class="analytics-info">
+            <div class="analytics-label">Gj.snitt Månedlig (kr):</div>
+            <div class="analytics-value" id="detail-avg-monthly">Laster...</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Populære Engangsbeløp</h3>
+      <div class="analytics-table">
+        <table id="table-popular-onetime">
+          <thead>
+            <tr>
+              <th>Beløp (kr)</th>
+              <th>Antall</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <h3>Populære Månedlige Beløp</h3>
+      <div class="analytics-table">
+        <table id="table-popular-monthly">
+          <thead>
+            <tr>
+              <th>Beløp (kr)</th>
+              <th>Antall</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <h3>Forespørsler per Time</h3>
+      <div class="analytics-table">
+        <table id="table-usage-hour">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Antall</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <h3>Beløp per Dag</h3>
+      <div class="analytics-table">
+        <table id="table-amount-day">
+          <thead>
+            <tr>
+              <th class="sortable" data-sort="date">Dato</th>
+              <th class="sortable" data-sort="amount">Total Beløp (kr)</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
     <div class="footer">
       <p>© 2025 System Status</p>
     </div>
+
+    <!-- Help Button -->
+    <button class="help-button" id="help-button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="16" x2="12" y2="12"></line>
+        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+      </svg>
+    </button>
+
+    <!-- Help Modal -->
+    <div class="help-modal" id="help-modal">
+      <div class="help-content">
+        <h2>Hva betyr alt?</h2>
+        <p><strong>Tjenestestatus:</strong> Viser statusen til ulike tjenester i realtid.</p>
+        <p><strong>Analysedetaljer:</strong> Gir en oversikt over ulike analysemetrikker som totalt antall forespørsler, engangsforspørsler, månedlige forespørsler, osv.</p>
+        <p><strong>Detaljert Analytics:</strong> Gir en detaljert oversikt over ulike analysemetrikker som totalt beløp, gjennomsnittlige beløp, populære beløp, osv.</p>
+        <p><strong>Forespørsler per Time:</strong> Viser antall forespørsler for hver time.</p>
+        <p><strong>Beløp per Dag:</strong> Viser totalt beløp for hver dag. Klikk på kolonneoverskriften for å sortere.</p>
+        <button class="close-button" id="close-help-modal">Lukk</button>
+      </div>
+    </div>
   </div>
-  
+
   <script>
     // --- Service Status Iframe Checks ---
     function checkIframe(iframeId, containerId, lastCheckId) {
@@ -495,7 +772,7 @@
       const lastCheckElement = document.getElementById(lastCheckId);
       const statusIndicator = container.closest('.status-card').querySelector('.status-indicator');
       const now = new Date();
-      
+
       iframe.onload = () => {
         container.classList.remove('checking');
         container.classList.add('online');
@@ -512,7 +789,7 @@
         `;
         lastCheckElement.textContent = now.toLocaleTimeString();
       };
-      
+
       iframe.onerror = () => {
         container.classList.remove('checking');
         container.classList.add('offline');
@@ -530,7 +807,7 @@
         `;
         lastCheckElement.textContent = now.toLocaleTimeString();
       };
-      
+
       // Timeout fallback if neither onload nor onerror fires
       setTimeout(() => {
         if (container.classList.contains('checking')) {
@@ -552,15 +829,15 @@
         }
       }, 10000);
     }
-    
+
     // Initialize service status checks for iframes
     checkIframe("monthly-frame", "monthly-container", "monthly-lastcheck");
     checkIframe("onetime-frame", "onetime-container", "onetime-lastcheck");
     checkIframe("server-frame", "server-container", "server-lastcheck");
-    
+
     // --- Analytics Section with Charts ---
     let dailyChart, weeklyChart, monthlyChart;
-    
+
     function createChart(ctx, titleText) {
       return new Chart(ctx, {
         type: 'line',
@@ -595,8 +872,8 @@
           },
           scales: {
             x: {
-              ticks: { 
-                autoSkip: true, 
+              ticks: {
+                autoSkip: true,
                 maxTicksLimit: 10,
                 color: 'rgba(158, 158, 158, 0.8)'
               },
@@ -604,7 +881,7 @@
                 display: false
               }
             },
-            y: { 
+            y: {
               beginAtZero: true,
               ticks: {
                 color: 'rgba(158, 158, 158, 0.8)'
@@ -617,7 +894,7 @@
         }
       });
     }
-    
+
     function updateChart(chart, labels, data, titleText) {
       if (chart) {
         chart.data.labels = labels;
@@ -630,7 +907,7 @@
         chart.update();
       }
     }
-    
+
     // Tab switching functionality
     function setupTabs() {
       const tabButtons = document.querySelectorAll('.tab-button');
@@ -639,12 +916,12 @@
           // Deactivate all tabs
           tabButtons.forEach(btn => btn.classList.remove('active'));
           document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
-          
+
           // Activate the clicked tab
           button.classList.add('active');
           const tabId = button.getAttribute('data-tab') + '-tab';
           document.getElementById(tabId).classList.add('active');
-          
+
           // Resize charts after tab change to fix rendering issues
           if (tabId === 'daily-tab' && dailyChart) dailyChart.resize();
           if (tabId === 'weekly-tab' && weeklyChart) weeklyChart.resize();
@@ -652,18 +929,18 @@
         });
       });
     }
-    
-    // Fetch analytics data from the server endpoint
+
+    // Fetch analytics data from the server endpoint and update the dashboard
     function fetchAnalytics() {
       fetch('https://3000-idx-test-server-1741268804010.cluster-y34ecccqenfhcuavp7vbnxv7zk.cloudworkstations.dev/analytics')
         .then(response => response.json())
         .then(data => {
-          // Update aggregated stats
+          // Update aggregated stats cards
           document.getElementById('total-requests').textContent = data.totalRequests;
           document.getElementById('one-time-requests').textContent = data.totalOneTime;
           document.getElementById('monthly-requests').textContent = data.totalMonthly;
-          
-          // Convert usageByDay object -> sorted array
+
+          // Update charts (daily, weekly, monthly usage)
           const dailyData = [];
           for (const date in data.usageByDay) {
             dailyData.push({ date: date, count: data.usageByDay[date] });
@@ -671,8 +948,7 @@
           dailyData.sort((a, b) => new Date(a.date) - new Date(b.date));
           const dailyLabels = dailyData.map(item => item.date);
           const dailyCounts = dailyData.map(item => item.count);
-          
-          // Compute weekly usage by grouping daily data by ISO week
+
           function getWeekKey(dateStr) {
             const d = new Date(dateStr);
             const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
@@ -682,6 +958,7 @@
             const weekNo = Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
             return `${date.getUTCFullYear()}-W${weekNo}`;
           }
+
           const weeklyMap = {};
           dailyData.forEach(item => {
             const weekKey = getWeekKey(item.date);
@@ -689,8 +966,7 @@
           });
           const weeklyLabels = Object.keys(weeklyMap).sort();
           const weeklyCounts = weeklyLabels.map(label => weeklyMap[label]);
-          
-          // Compute monthly usage by grouping daily data by "YYYY-MM"
+
           const monthlyMap = {};
           dailyData.forEach(item => {
             const monthKey = item.date.slice(0, 7);
@@ -698,31 +974,118 @@
           });
           const monthlyLabels = Object.keys(monthlyMap).sort();
           const monthlyCounts = monthlyLabels.map(label => monthlyMap[label]);
-          
-          // Update charts with new data
+
           updateChart(dailyChart, dailyLabels, dailyCounts, 'Daily Usage');
           updateChart(weeklyChart, weeklyLabels, weeklyCounts, 'Weekly Usage');
           updateChart(monthlyChart, monthlyLabels, monthlyCounts, 'Monthly Usage');
+
+          // Update detailed analytics fields
+          document.getElementById('detail-total-requests').textContent = data.totalRequests;
+          document.getElementById('detail-total-onetime').textContent = data.totalOneTime;
+          document.getElementById('detail-total-monthly').textContent = data.totalMonthly;
+          document.getElementById('detail-total-amount').textContent = data.totalAmount;
+          document.getElementById('detail-onetime-amount').textContent = data.onetimeAmount;
+          document.getElementById('detail-monthly-amount').textContent = data.monthlyAmount;
+          document.getElementById('detail-avg-amount').textContent = data.avgAmount;
+          document.getElementById('detail-avg-onetime').textContent = data.avgOnetimeAmount;
+          document.getElementById('detail-avg-monthly').textContent = data.avgMonthlyAmount;
+
+          // Update Popular One-Time Payment Amounts Table
+          const tablePopularOnetime = document.getElementById('table-popular-onetime').getElementsByTagName('tbody')[0];
+          tablePopularOnetime.innerHTML = '';
+          for (const amount in data.popularOnetimeAmounts) {
+            const count = data.popularOnetimeAmounts[amount];
+            tablePopularOnetime.innerHTML += `<tr><td>${amount}</td><td>${count}</td></tr>`;
+          }
+
+          // Update Popular Monthly Payment Amounts Table
+          const tablePopularMonthly = document.getElementById('table-popular-monthly').getElementsByTagName('tbody')[0];
+          tablePopularMonthly.innerHTML = '';
+          for (const amount in data.popularMonthlyAmounts) {
+            const count = data.popularMonthlyAmounts[amount];
+            tablePopularMonthly.innerHTML += `<tr><td>${amount}</td><td>${count}</td></tr>`;
+          }
+
+          // Update Usage By Hour Table
+          const tableUsageHour = document.getElementById('table-usage-hour').getElementsByTagName('tbody')[0];
+          tableUsageHour.innerHTML = '';
+          for (const hour in data.usageByHour) {
+            const count = data.usageByHour[hour];
+            tableUsageHour.innerHTML += `<tr><td>${hour}</td><td>${count}</td></tr>`;
+          }
+
+          // Update Amount By Day Table
+          const tableAmountDay = document.getElementById('table-amount-day').getElementsByTagName('tbody')[0];
+          tableAmountDay.innerHTML = '';
+          for (const day in data.amountByDay) {
+            const amount = data.amountByDay[day];
+            tableAmountDay.innerHTML += `<tr><td>${day}</td><td>${amount}</td></tr>`;
+          }
+
+          // Add sorting functionality to the "Beløp per Dag" table
+          const amountDayHeaders = tableAmountDay.parentNode.querySelectorAll('th.sortable');
+          amountDayHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+              const sortKey = header.getAttribute('data-sort');
+              const sortDirection = header.classList.contains('sort-asc') ? 'desc' : 'asc';
+              sortTable(tableAmountDay, sortKey, sortDirection);
+              header.classList.toggle('sort-asc', sortDirection === 'asc');
+              header.classList.toggle('sort-desc', sortDirection === 'desc');
+              amountDayHeaders.forEach(h => {
+                if (h !== header) {
+                  h.classList.remove('sort-asc', 'sort-desc');
+                }
+              });
+            });
+          });
         })
         .catch(error => {
           console.error('Error fetching analytics:', error);
         });
     }
-    
+
+    // Sort table function
+    function sortTable(table, sortKey, sortDirection) {
+      const rows = Array.from(table.querySelectorAll('tr'));
+      const sortedRows = rows.sort((a, b) => {
+        const aValue = a.querySelector(`td:nth-child(${sortKey === 'date' ? 1 : 2})`).textContent;
+        const bValue = b.querySelector(`td:nth-child(${sortKey === 'date' ? 1 : 2})`).textContent;
+        if (sortKey === 'date') {
+          return sortDirection === 'asc' ? new Date(aValue) - new Date(bValue) : new Date(bValue) - new Date(aValue);
+        } else {
+          return sortDirection === 'asc' ? parseFloat(aValue) - parseFloat(bValue) : parseFloat(bValue) - parseFloat(aValue);
+        }
+      });
+      sortedRows.forEach(row => table.appendChild(row));
+    }
+
+    // Help button functionality
+    const helpButton = document.getElementById('help-button');
+    const helpModal = document.getElementById('help-modal');
+    const closeHelpModal = document.getElementById('close-help-modal');
+
+    helpButton.addEventListener('click', () => {
+      helpModal.classList.add('active');
+    });
+
+    closeHelpModal.addEventListener('click', () => {
+      helpModal.classList.remove('active');
+    });
+
     document.addEventListener("DOMContentLoaded", function() {
       // Initialize charts
       const dailyCtx = document.getElementById('dailyChart').getContext('2d');
       dailyChart = createChart(dailyCtx, 'Daily Usage');
-      
+
       const weeklyCtx = document.getElementById('weeklyChart').getContext('2d');
       weeklyChart = createChart(weeklyCtx, 'Weekly Usage');
-      
+
       const monthlyCtx = document.getElementById('monthlyChart').getContext('2d');
       monthlyChart = createChart(monthlyCtx, 'Monthly Usage');
-      
+
       // Setup tab switching
       setupTabs();
-      
+
       // Fetch analytics data immediately, then every 10 seconds
       fetchAnalytics();
       setInterval(fetchAnalytics, 10000);
