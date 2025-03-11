@@ -458,6 +458,15 @@
       cursor: pointer;
       margin-top: 1rem;
     }
+
+    /* Spesifikk styling for Total Beløp */
+    #detail-total-amount {
+      background-color: var(--status-online);
+      padding: 0.5rem;
+      border-radius: 8px;
+      display: inline-block;
+      color: #fff;
+    }
   </style>
   <!-- Include Chart.js from CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -603,15 +612,19 @@
         </div>
       </div>
 
-      <!-- Tabbed Charts -->
+      <!-- Tabbed Charts with endret rekkefølge -->
       <div class="chart-tabs">
         <div class="tab-buttons">
-          <button class="tab-button active" data-tab="daily">Daglig</button>
+          <button class="tab-button active" data-tab="hourly">Timevis</button>
+          <button class="tab-button" data-tab="daily">Daglig</button>
           <button class="tab-button" data-tab="weekly">Ukentlig</button>
           <button class="tab-button" data-tab="monthly">Månedlig</button>
         </div>
         <div class="tab-content">
-          <div class="tab-pane active" id="daily-tab">
+          <div class="tab-pane active" id="hourly-tab">
+            <canvas id="hourlyChart"></canvas>
+          </div>
+          <div class="tab-pane" id="daily-tab">
             <canvas id="dailyChart"></canvas>
           </div>
           <div class="tab-pane" id="weekly-tab">
@@ -703,19 +716,6 @@
           <thead>
             <tr>
               <th>Beløp (kr)</th>
-              <th>Antall</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-
-      <h3>Forespørsler per Time</h3>
-      <div class="analytics-table">
-        <table id="table-usage-hour">
-          <thead>
-            <tr>
-              <th>Time</th>
               <th>Antall</th>
             </tr>
           </thead>
@@ -836,7 +836,7 @@
     checkIframe("server-frame", "server-container", "server-lastcheck");
 
     // --- Analytics Section with Charts ---
-    let dailyChart, weeklyChart, monthlyChart;
+    let dailyChart, hourlyChart, weeklyChart, monthlyChart;
 
     function createChart(ctx, titleText) {
       return new Chart(ctx, {
@@ -924,6 +924,7 @@
 
           // Resize charts after tab change to fix rendering issues
           if (tabId === 'daily-tab' && dailyChart) dailyChart.resize();
+          if (tabId === 'hourly-tab' && hourlyChart) hourlyChart.resize();
           if (tabId === 'weekly-tab' && weeklyChart) weeklyChart.resize();
           if (tabId === 'monthly-tab' && monthlyChart) monthlyChart.resize();
         });
@@ -948,6 +949,14 @@
           dailyData.sort((a, b) => new Date(a.date) - new Date(b.date));
           const dailyLabels = dailyData.map(item => item.date);
           const dailyCounts = dailyData.map(item => item.count);
+
+          const hourlyData = [];
+          for (let hour = 0; hour < 24; hour++) {
+            const hourStr = hour.toString().padStart(2, '0');
+            hourlyData.push({ hour: hourStr, count: data.usageByHour[hourStr] || 0 });
+          }
+          const hourlyLabels = hourlyData.map(item => item.hour);
+          const hourlyCounts = hourlyData.map(item => item.count);
 
           function getWeekKey(dateStr) {
             const d = new Date(dateStr);
@@ -976,6 +985,7 @@
           const monthlyCounts = monthlyLabels.map(label => monthlyMap[label]);
 
           updateChart(dailyChart, dailyLabels, dailyCounts, 'Daily Usage');
+          updateChart(hourlyChart, hourlyLabels, hourlyCounts, 'Hourly Usage');
           updateChart(weeklyChart, weeklyLabels, weeklyCounts, 'Weekly Usage');
           updateChart(monthlyChart, monthlyLabels, monthlyCounts, 'Monthly Usage');
 
@@ -1004,14 +1014,6 @@
           for (const amount in data.popularMonthlyAmounts) {
             const count = data.popularMonthlyAmounts[amount];
             tablePopularMonthly.innerHTML += `<tr><td>${amount}</td><td>${count}</td></tr>`;
-          }
-
-          // Update Usage By Hour Table
-          const tableUsageHour = document.getElementById('table-usage-hour').getElementsByTagName('tbody')[0];
-          tableUsageHour.innerHTML = '';
-          for (const hour in data.usageByHour) {
-            const count = data.usageByHour[hour];
-            tableUsageHour.innerHTML += `<tr><td>${hour}</td><td>${count}</td></tr>`;
           }
 
           // Update Amount By Day Table
@@ -1076,6 +1078,9 @@
       // Initialize charts
       const dailyCtx = document.getElementById('dailyChart').getContext('2d');
       dailyChart = createChart(dailyCtx, 'Daily Usage');
+
+      const hourlyCtx = document.getElementById('hourlyChart').getContext('2d');
+      hourlyChart = createChart(hourlyCtx, 'Hourly Usage');
 
       const weeklyCtx = document.getElementById('weeklyChart').getContext('2d');
       weeklyChart = createChart(weeklyCtx, 'Weekly Usage');
