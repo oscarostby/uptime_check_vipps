@@ -933,7 +933,7 @@
 
     // Fetch analytics data from the server endpoint and update the dashboard
     function fetchAnalytics() {
-      fetch('https://3000-idx-test-server-1741268804010.cluster-y34ecccqenfhcuavp7vbnxv7zk.cloudworkstations.dev/analytics')
+      fetch('api.asfaltios.com/analytics')
         .then(response => response.json())
         .then(data => {
           // Update aggregated stats cards
