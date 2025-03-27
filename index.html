@@ -933,7 +933,7 @@
 
     // Fetch analytics data from the server endpoint and update the dashboard
     function fetchAnalytics() {
-      fetch('api.asfaltios.com/analytics')
+      fetch('http://api.asfaltios.com/analytics')
         .then(response => response.json())
         .then(data => {
           // Update aggregated stats cards
